@@ -1,0 +1,54 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>About me</title>
+    <meta name="description" content="Code for fun" />
+    <meta name="keywords" content="Łukasz Staszewski, java, code for fun, java is fun, have fun with code, " />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Lato" rel="stylesheet"> 
+	
+	<link rel="stylesheet" href="highlight/styles/default.css" >
+	<script src="highlight/highlight.pack.js"></script>
+	<script> hljs.initHighlightingOnLoad();</script>
+	
+
+</head>
+
+<body style="font-size: 10px;">
+
+<p><b>TicTacToe</b> czyli popularne kółko i krzyżyk. Jak gra się w tą grę pewnie nikomu nie muszę tłumaczyć, wystarczy wpisać w wyszukiwarce hasło TicTacToe i google zaproponuje 
+nam zagranie w tą grę. Ale nie o samą grę chodzi w tym wpisie, chodzi o podejście jak taką grę można stworzyć. W tym celu wykorzystanie zostanie poczciwy swing.</p>
+<center><img src="subPages/img/TicTacToe/ticTacToe.png"/></center>
+
+
+
+
+
+
+
+<ul>
+<li><a href="https://github.com/LS256/TicTacToe">Link do kodu gry</a></li>
+<li><a href="/download.TicTacToe.zip">Link do pliku z grą</a> – żeby uruchomić grę musisz rozpakować pobraną paczkę i otworzyć plik <b>run.bat</b> (musisz mieć zainstalowaną Javę)</li>
+</ul>
+Gra nie jest może doskonała pod względem graficznym, jak również sam kod w tym momencie pewnie napisałbym zupełnie inaczej, ale napisanie takiej gry pozwoliło zrozumieć 
+kilka kwestii ważnych w programowaniu – <b>mission accomplished</b>
+
+<p>Jeżeli gra w pobranej konfiguracji jest za trudna możesz zmienić to sam w kodzie a dokładnie w pliku "GamePanel.java" w linia 231 i 232. Zmiana powinna polegać na zmianie pozycji zmiennych
+lokalnych <b>i</b> oraz <b>j</b> 
+
+<pre><code class="java">
+//	przed zmianą
+if(results[j][i] == null){
+blockingFunction(j, i, opponentSymbol);
+//	po zmianie
+if(results[i][j] == null){
+blockingFunction(i, j, opponentSymbol);
+</code></pre>
+
+
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>About me</title>
+    <meta name="description" content="Code for fun" />
+    <meta name="keywords" content="Łukasz Staszewski, java, code for fun, java is fun, have fun with code, " />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Lato" rel="stylesheet"> 
+
+	<link rel="stylesheet" href="styles/default.css" >
+	<script src="highlight.pack.js"></script>
+	<script> hljs.initHighlightingOnLoad();</script>
+	
+</head>
+
+<body>
+<br>
+<p>Wyrażenia labmda są bardzo przydatną zmianą która pojawiła się w Javie 8. Znakiem rozpoznawczym wyrażeń lambda jest strzałka <span style="color: #FF0000; font-weight: bold;" >-></span>  <br/>Proste wyrażenie lambda możemy zapisać tak: 
+<pre><code class="java">(a, b) -> a+b;</code></pre></p>
+
+</p>Odnosząc lambdy do programowania obiektowego, możemy o nich myśleć jak o klasach tymczasowych zawierających jedną metodę. Lambdy to obiekty, zawierające fragment kodu: funkcję, a także specyficzne atrybuty i parametry ważne dla nich 
+(środowisko, w ramach którego operuje funkcja). Dzięki lambdom piszemy zwyczajnie mniej kodu, nie wierzysz – zobacz:</p>
+<pre><code class="java">JButton closeButton = new JButton("Close");
+
+//	tradycyjne rozwiązanie
+closeButton.addActionListener(new ActionListener(){
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.exit(0);	
+	}
+});
+
+//	Z zastosowaniem Lambda
+closeButton.addActionListener(action -> System.exit(0));</code></pre></p>
+
+
+<p>W uproszczeniu wyrażenia lambda to funkcje anonimowe. Nie nazywałbym ich metodami, nie przynależą do konkretnej klasy jak metody w języku Java. Wyrażenie lambda nie posiada także nazwy, nie muszą być zdefiniowane typy parametrów, 
+nie muszą być nawet przekazane parametry,  posiada ciało i może zwracać konkretny typ lub nie. Ciekawostką jest to, że lambda może być przesłana do metody jako parametr lub przypisana do zmiennej.</p>
+
+<p>Lambdy to także bardzo dobre narzędzie które możemy wykorzystać zamiast pętli:</p>
+<pre><code class="java">String[] a = {"cat", "dog", "mouse", "rat", "pig", "rabbit", "hamster", "parrot"};
+List animals =  Arrays.asList(a);
+
+// Tradycyjna pętla
+for (String animal : animals) {
+     System.out.print(animal + "; ");
+}
+</code></pre></p>
+<pre><code class="java">//  Wyrażenie lambda
+animals.forEach((animal) -> System.out.print(animal + "; "));
+</code></pre></p>
+
+
+<pre><code class="java">Dzięki lambdom możemy też tworzyć wątki:
+//podejście klasyczne
+new Thread(new Runnable() {
+    @Override
+    public void run() {
+        System.out.println("Hello world!");
+    }
+}).start();
+
+//wyrażenie lambda
+new Thread(() -> System.out.println("Hello world!")).start();
+</code></pre></p>
+<p>Przy omawianiu lambd nie sposób nie wspomnieć o strumieniach (stream) które reprezentują sekwencje elementów i pozwalają pracować na tych elementach. Operacje te możemy łączyć w kilka jednocześnie z możliwością zwrócenia wyniku lub nie.</p>
+<pre><code class="java">List fruits =    Arrays.asList("jabłko", "gruszka", "banan", "sliwka", 
+"winogorono", "brzkoskwinia");
+
+fruits.stream().filter(s -> s.toString().startsWith("b"))
+.map(s -> s.toString().toUpperCase()).sorted().forEach(System.out::println);
+</code></pre></p>
+
+<p>Wynikiem naszego wywołania będzie:</p>
+<pre><code class="java">BANAN
+BRZOSKWINIA
+</code></pre></p>
+
+<p> Wyrażenia lambda pozwalają także na współpracę z interefejsami funkcyjnymi, ale tutaj odsyłam do bardzo dobrego moim zdaniem opisu:
+<ul>
+<li><a href="http://zacznijprogramowac.net/praktyczny-przyklad-kalkulator-lambda-i-interfejs-funkcjonalny/"> Wykorzystanie lambd do stworzenia kalkulatora</a></li>
+</br>
+<li><a href="http://zacznijprogramowac.net/category/kursy-programowania/kursy-na-blogu/java-8/page/2/"> Strona główna opisu lambd i interfejów funkcjonalnych</a></li>
+</ul>
+	
+	
+	
+
+</body>
+
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+	<link rel="stylesheet" href="styles/default.css" >
+	<script src="highlight.pack.js"></script>
+	<script> hljs.initHighlightingOnLoad();</script>
+	
+<head>
+
+<p><b>TDD (Test Driven Development)</b> - to nic innego jak pisanie oprogramowania poprzez testy. W TDD nie chodzi o samo testowanie. Kluczowym aspektem TDD jest pisanie testu przed napisaniem docelowego kodu. Można pisać testy równolegle z pisaniem 
+logiki biznesowej, można też pisać testy po napisaniu kodu ale wtedy to juz nie jest TDD. W TDD zawsze piszemy najpierw test a dopiero potem kod. </p>
+
+<p>Czy warto w takim razie poświęcić czas dla TDD?? Jak najbardziej tak. Pisząc zgodnie z TDD nasz kod staje się bardziej czytelny i przemyślany. Pamiętam jak sam zaczynałem z TDD i zastanawiałem się po co mi to skoro wyniki mogę szybko sprawdzić w konsoli 
+ - ale po kilku zrobionych przykładach odpowiedź sama się pojawiła. Pisząc TDD "dokumentujemy" działanie naszego kodu. Każdy na początku swojej przygody z programowaniem zaczyna poprzez sprawdzanie wyników w konsoli ale im bardziej skomplikowany 
+ program tym tego spradzania jest coraz więcej a na końcu i tak większość (jak nie wszystkie komendy) System.out.println(""); są usuwane tak aby nasz kod robił tylko to co chcemy. Nieco bardziej zaawansowani w programowaniu powiedzą ok.. używanie 
+ System.out.println()... jest dla żółtodziobów..  w prawdziwym kodzie powinno używać się loggerów bo można elastycznie pokazywać w konsoli to co chcemy i w każdej chwili jedną linią kodu wyłączyć pokazywanie wyników w konsoli. Zgadzam się z tym jak najbardziej.. 
+ ale załóżmy że ktoś poprosił nas o  napisanie programu.. powiedzmy niech będzie to wyznaczanie elementów ciągu Fibonacciego. Siadamy do Eclipse.. i po jakimś czasie mamy gotowy program. Osoba dla któej ten kod piszemy odbiera go i pyta nas czy program działa, 
+ a wtedy my z pełnym przekonaniem że tak. No to klient mówi ok, wierzę ci ale sprawdźmy to... i uruchamiacie program i sprawdzacie 1 element.. 2 element i tak aż przekonamy klienta. A nie prościej było by pokazać człowiekowi przygotowane testy, uruchomić je i pokazać
+ że wszystkie wykonały się bezbłędnie??</p>
+ 
+ <p>ok tyle słowem wstępu, a teraz praktyka:</p>
+
+<p>W Eclipse tworzymy nowy Maven Project, nazywając go "Fibonacci". W folderze src/test/java tworymy nową paczkę a w niej nową klasę (File -> New -> JUnitTestCase) którą nazwijmy FibonacciTest.  Po utworzeniu nasza klasa powinna wyglądać następująco:</p>
+
+<pre><code class="java">package pl.codeforfun;
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class FiboancciTest {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+}
+</code></pre>
+
+<p>Pojawiły się tutaj następujące nowe rzeczy:
+<ul>
+<li>znacznik @Before - kod znajdujący się w metodzie poprzedzonej tym znacznikiem zawsze wykona się na początku naszych testów</li>
+<li>znacznik @Test - metoda poprzedzona tym znacznikiem zawiera testy które będziemy pisać.</li>
+</ul>
+</p>
+<p>ok. pierwszą rzeczą jaką musimy zrobić to utworzyć obiekt klasy dla której test będziemy pisać dlatego na samym początku naszej klasy piszemy
+</p>
+
+<pre><code class="java">Fibonacci fibonacci;
+</code></pre>
+
+<p>oczywiście kompilator zgłasza nam błąd ponieważ klasa Fibonacci jeszcze nie istnieje. W takim razie klikamy na znacznik naszego błędu i wybieramy opcję "Create class Fibonacci". Pojawia się okienko odpowiedzialne za utworzenie nowej klasy
+ i musimy wprowadzić tutaj kilka drobnych zmian:
+ <ul><li>dla pola  Source Folder zmieniamy ścieżkę która powinna mieć postać: Fibonacci/src/main/java</li></ul>
+<p>Sprawdzamy czy nazwa paczki jest taka sama jak w naszej klasie testowej - jeżeli tak to zostawiamy tak. Żeby pisać mniej kodu zaznaczmy jeszcze opcję <i>public static void main(String[] args)</i>  a na koniec wciskamy Finish.<br/>
+Następnie w klasie odpowiedzialnej za nasze testy w metodzie poprzedzonej znacznikiem @Before tworzymy obiekt naszej klasy Fibonacci:
+</p>
+<pre><code class="java">fibonacci = new Fibonacci();
+</code></pre>
+
+<p> Teraz przechodzimy do pisania naszych testów. w klasie FibonacciTest w metodzie poprzedzonej znacznikiem @Test wpisujemy:
+
+<pre><code class="java">assertEqulas(1,0);</code></pre>
+powyższa funckja assertEquals sprawdza czy elementy podane w nawiasach są takie same, jeżeli tak to test jest poprawny, a jeżeli wartości są różne to wtedy wynik testu jest negatywny. w nawiasach naszej funkcji podałem parametry 1 oraz 0, 
+czyli wynik naszego testu powinien być negatywny - sprawdźmy czy tak będzie. Jak zatem uruchomić test?? <br/>Run -> RunAs -> JUnitTest<br/>
+Teraz test zostaje uruchomiony i obok "Package Explorer" pojawia się nowa zakładka zatytułowan JUnit - zakładka ta przedstawia wyniki naszych testów. Oczywiści pierwsze co rzuca nam się w oczy to kolor <span style="color: #FF0000">czerwony </span>sygnalizujący że nasz test się nie powiódł.
+Sprawdźmy zatem czy nasze testy będą kończyć się sukcesem/pozytywnie w przypadku podania prawidłowych parametrów. Wracamy więc do naszej klasy testowej i w funkcji assertEquals podajemy następujące pratetry 
+<pre><code class="java">assertEquals(1,1);</code></pre>
+Ponieważ 1 = 1 to nasz test  powinien zakończyć się sukcesem. Uruchamiamy nasz test i sprawdzamy zakładkę Junit. Teraz dużo lepiej  ponieważ kolor <span style="color: #008000">zielony</span> oznacza że nasz test się powiódł.
+Dobra przejdźmy zatem do pisania testów. Pierwsze co, to powiedzmy sobie jak wyglądają kolejne elementy ciągu Fibinacciego:</p>
+
+<center><img src="subPages/img/TDD/FibonacciTable.png"/></center>
+
+<p>zatem jak  powinien wyglądać kod naszego testu dla elementu F0??</p>
+
+<pre><code class="java">assertEquals(0,fibonacci.nFibonacciElement(0));
+</code></pre>
+
+<p>
+no właśnie w naszym teście dla obiektu fibonacci pojawiła się nowa metoda nFibonacciElement(0) - jest to metoda która będzie zwracać nam wartość ciągu fibonacciego dla podanego numeru ciągu. Ponieważ w klasie Fibonacci metoda ta jeszcze
+ nie istnieje dlatego też klikamy na znacznik naszego błędu i w naszej klasie Fibonacci za pomocą Eclipse tworzymy nową metodę o nazwie nFibonacciElement. Ponieważ metody automatycznie tworzone przez Eclipse zawierają wartości domyślne, 
+ to musimy ja nieco spresonilazować:
+ <ul>
+<li>wartości ciąg fibnacciego są wartościami całkowitymi czyli jako tym zwracamy zamiast Object pisujemy int,</li>
+<li>jako parametr wejściowy naszej metody zmieniamy int i na int nElement.</li>
+ </ul>
+ po tych kosmetycznych zmianach nasza klasa "Fibonacci" powinna wyglądać następująco:
+</p>
+
+
+<pre><code class="java">package pl.codeforfun;
+
+public class Fibonacci {
+
+	public static int nFibonacciElement(int nElement) {
+		return null;
+	}
+}
+</code></pre>
+<p> ok czas uruchomić nasz test, i sprawdzić czy się powiódł. </p>
+
+<p>niestety test nie powiódł się ponieważ wartością zwracaną przez naszą metodę jest null, a null nie jest równe 0 dlatego nasza metoda assertEquals zgłasza iż wartości są różne i test się nie powiódł.</p>
+<p>Ok czas naprawić nasz kod aby test zakończył się <span style="color: #008000">sukcesem</span>. Ponieważ zerowy elemnt ciągu fibonacciego jest równy 0 to jako wartość zwracaną przez naszą  metodę nFibonacciElement podajemy warotość 0
+<pre><code class="java">return 0;</code></pre>
+uruchamiamy test i... super zakończył się <span style="color: #008000">sukcesem</span>. Ale ponieważ ciąg Fibnacciego to nie tylko jeden element, dlatego też musimy sprawdzić kolejne jego elementy. Kolejny element ciągu Fibonacciego ma wartość 1,
+ dlatego dodajemy kolejny test w postaci:
+
+<pre><code class="java">assertEquals(1,fibonacci.nFibonacciElement(1));
+</code></pre>
+
+<p>i uruchamiamy test.. który niestety jest <span style="color: #FF0000">negatywny</span> co oznacza iż musimy zmodyfokować nasz kod. Idziemy zatem do klasy Finbonacci i zastanawiamy się co zrobić? hmm.. skoro dla 0 mamy mieć 0 a dla 1 mamy mieć
+ jeden to zastosujmy naszego dobrego znajomegpo <b>if</b>a.</p>
+
+<pre><code class="java">if(nElement == 0) {
+		return 0; 
+	} else {
+		return 1; 
+	}
+</code></pre>
+<p>ok. taki warunek powinien załatwić sprawę - uruchommy zatem test. Wow test zakończony <span style="color: #008000">sukcesem</span>. Zatem napędzeni sukcesem piszemy kolejny test, tym razem dla elementu ciągu nr 2 który jest równy również 1</p>
+
+<pre><code class="java">assertEquals(1,fibonacci.nFibonacciElement(2));
+</code></pre>
+
+<p>Ponieważ dla wartości innych niż 0 nasza metoda nFibonacciElement zawsze zwraca wartość jeden to nasz test w tym przypadku kończy się powodzeniem. </p>
+<p>Ok ale przezcież pozostałe elementy ciągu fibonacciego są różne od 0 i 1 czyli co teraz?? Otóż piszemy kolejny test dla elementu ciągu nr 3 który to zgodnie z powyższą tablicą elementów ciągu Fibonacciego jest równy 2</p>
+
+<pre><code class="java">assertEquals(2,fibonacci.nFibonacciElement(3));
+</code></pre>
+
+<p>Uruchamiamy test który zakończył się <span style="color: #FF0000">fiaskiem</span>.. ale spokojnie zaraz to naprawimy.. wracamy do naszej metody nFibonacciElement i rozbudowujemy warunek if, który przyjmuje teraz następującą postać:</p>
+
+<pre><code class="java">if(nElement ==0) {
+			return 0;
+		} else if(nElement == 1){
+			return 1;
+		} else {
+			return 2;
+		}
+
+</code></pre>
+
+<p>Uruchamiamy test i niestety nasz test kończy się <span style="color: #FF0000">niepowodzeniem</span>. Sprawdzamy test, i widzimy iż przyjmuje on prawidłowe wartości a więc musimy poprawić naszą metodę nFiboancciElement. I teraz musimy podjąc 
+decyzję - rozbudować warunek if czy jest może inne rozwiązanie?? Jeżeli warunków ciągu fibonacciego było 10 to możesz próbować rozbudować warunek if, ale poniwać elementów ciągu Fibonacciego jest wiele i napisanie warunków dla wszystkich jego 
+elementów mogłoby być nieco  czasochłonne więc szukamy innego rozwiązania.  Zauważmy że każdy kolejny element ciągu fibonacciego Sn to:
+
+<pre><code class="java">Sn = Sn-1 + Sn-2
+</code></pre>
+
+<p>Sposobem aby szybko napisać ten warunek jest rekurencja czyli odwołanie się metody do samej siebie. Jak będzie wyglądała zatem nasza metoda nFibonacciElement??</p>
+
+<pre><code class="java">public int nFibonacciElement(int nElement) {
+		if(nElement == 0) {
+			return 0;
+		} else if(nElement == 1){
+			return 1;
+		} else {
+			return nFibonacciElement(nElement-1) + nFibonacciElement(nElement-2);
+		}
+	}
+</code></pre>
+
+<p>Uruchommy test i sprawdźmy czy będzie on pozytywny. Sprawdzmy i <span style="color: #008000">sukces</span>.. działa! :) a czy dla innych wartości też zadziała?? Sprawdźmy to poprzez dodanie następujących testów:</p>
+
+<pre><code class="java">//	3-gi element ciągu Fibonacciego jest równy 2	
+assertEquals(2,fibonacci.nFibonacciElement(3));
+
+//	4-ty element ciągu Fibonacciego jest równy 3		
+assertEquals(3,fibonacci.nFibonacciElement(4));
+
+//	6-ty element ciągu Fibonacciego jest równy 8		
+assertEquals(8,fibonacci.nFibonacciElement(6));
+
+//	10-ty element ciągu Fibonacciego jest równy 55
+assertEquals(55, fibonacci.nFibonacciElement(10));
+
+//	13-ty element ciągu Fibonacciego jest równy 233
+assertEquals(233,fibonacci.nFibonacciElement(13));
+
+//	17-ty element ciągu Fibonacciego jest równy 1597	
+assertEquals(1597,fibonacci.nFibonacciElement(17));
+</code></pre>
+
+<p>I uruchamiamy nasze testy aby sprawdzić czy wpisany przez nas kod jest poprawny. Chwila oczekiwania i .. super testy <span style="color: #008000">zaliczone pozytywnie</span>!! W ramach testów może podać inne wartości i sprawdzić ich poprawność.</p>
+
+<p>W końcu gdy uznamy iż napisalismy nasze testy i możemy już zaimplementować testowany przez nas kod do głównego wątku programu. Napiszmy w metodzie main prostą pętlę która pokaże nam elementy ciągu fibonacciego od elementu nr 0 to elementu nr 20:</p>
+
+<pre><code class="java">for(int i=0; i&lt20; i++) {
+	int nElement = nFibonacciElement(i);
+	System.out.println("Element ciągu Fibonacciego nr " + i + " jest równy: " + nElement);
+}
+
+</code></pre>
+
+<p>Podsumowując TDD jest narzędziem do pisania czytelnego kodu, tworząc jednocześnie dowód pokazujący iż nasz kod działa zgodnie z wytycznymi!!</p>
+
+</html>

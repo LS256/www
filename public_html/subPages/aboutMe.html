@@ -1,0 +1,55 @@
+
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>About me</title>
+    <meta name="description" content="Code for fun" />
+    <meta name="keywords" content="Łukasz Staszewski, java, code for fun, java is fun, have fun with code, " />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Lato" rel="stylesheet"> 
+	
+
+
+<style>
+.code-elem{ color: #518E3A; }
+
+.code-str{ color: #FF0000; }
+</style>
+
+<script>
+function syntaxHighlights()  {
+	var ca = document.getElementsByTagName("code");
+	for(var i=0; i < ca.length; i++) {
+		var data = ca[i].innerHTML;
+		data = data.replace(/"(.*?)"/g, '<span class="code-str">&quot;$1&quot;</span>');
+		data = data.replace(/&lt;(.*?)&gt;/g, '<span class="code-elem">&lt;$1&gt;</span>');
+		ca[i].innerHTML = data;
+	}
+}
+		window.addEventListener("load", syntaxHighlights);
+		
+</script>
+
+</head>
+
+<body>
+<p>Programowaniem interesuję się od najmłodszych lat, począwszy od programowania mikrokontrolerów, przez Visual Basic, bazy danych, html, php aż po jave. Nawet gdy na studiach mieliśmy Auto Cada przygotowanie rysunków do wydruku nie interesowało mnie tyle co możliwość
+ przygotowania skryptu który zrobiłby np. fajną animację. No ale, w pewnym momencie życia skręciłem na obwodnicę, która to na szczęście w pewnym momencie i tak skierowała mnie z powrotem do programowania. </p>
+ <p> Od jakiegoś czasu cały swój wolny czas poświęcam na doskonalenie swoich  umiejętności programistycznych, stawiając przed sobą coraz to nowe wyzwania.</p>
+ 
+<div class="quotation">
+	<div>Dobrze jest znaleźć sobie hobby, któe tak człowiek wciąga, i sprawia że z radością czeka się na kolejny tydzień zamiast ponuro liczyć dni</div>
+	<div class="author">Celia Ahrern</div>
+</div>
+
+<p> Koduję bo lubię i sprawia mi to olbrzymią przyjemność. To właśnie w programowaniu znajduję to <b>coś</b>  co przyciąga i nie daje się oderwać.</p>
+ 
+<p>Jeżeli cokolwiek na tej stronie Cię zainteresuje lub pomoże Tobie stać się lepszym programistą to proszę powiedz mi o tym. Będzie to świetna motywacja do rozwoju strony kolejnych wpisów.</p>
+
+
+
+</body>
+
+</html>

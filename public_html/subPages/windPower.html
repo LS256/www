@@ -1,0 +1,56 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>About me</title>
+    <meta name="description" content="Code for fun" />
+    <meta name="keywords" content="Łukasz Staszewski, java, code for fun, java is fun, have fun with code, " />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Lato" rel="stylesheet"> 
+
+</head>
+
+<body style="font-size: 10px;">
+
+
+
+
+<p> Raz dla jednego z projektów prowadzonego przez firmę w któej obecnie pracuję, rozważaliśmy możliwość wybudowania źródła energii nie zależnego od dostaw 
+z sieci zewnętrznej, zdolnego do zasilania odbiorców w 100% w systemie pracy wyspowej. Ok. można tutaj przyjąć założenie że w oparciu o elektrownię wiatrową budujemy magazyn energii w postacji baterii akumulatorów
+i ładujemy je kiedy mamy energię z wiatru, a kiedy jej nie mamy to bierzemy zmagazynowaną w akumulatorach. </p>
+<p> Co jendak w sytuacji kiedy całą energię zgromadzoną w bateriach mamy już pobraną a wiatr jak nie wiał - tak nie wieje?? </p>
+<p> Założyliśmy wtedy że musimy wybudować źródło wytwórcze które w przypadku braku energii wyprodukowanej w elektrowni wiatrowej, będzie w stanie szybko się załączyć i produkować energię.</p>
+<p> Ok. kolejne bardzo dobre założenie tylko.. tylko jak sprawdzić ile taka elektrownia będzie pracować?? Na rynku jest wiele programów pozwalających na obliczenie mocy generowanej przez elektrownię wiatrową, jednakże ponieważ wyniki tych analiz są następnie przedkładane 
+do analiz finansowych, obliczenia te sprowadzane są dla okresu pełnego roku, i dają one informację o łącznej wyprodukowanej energii elektrycznej. W związku z tym potrzebowałem narzędzia które na podstawie danych pomiarowych, powie mi ile <i> nasza </i> elektrownia wiatrowa 
+wyprodukuje energii elektrycznej dla danej prędkości wiatru.</p>
+<p>Pierwszą wersją programu, był program działający w konsoli a który to: 
+<ul>
+	<li>miał wprowadzoną jedną krzywą mocy dla wybranej dla mnie turbiny wiatrowej,</li>
+	<li>nazwy plików z danymi pomiarowymi były wprowadzane bezpośrednio w kodzie programu</li>
+	<li>wyniki obliczeń były generowane bezpośrednio do pliku txt, któy można było następnie odpalić w excelu i szybko zrobić podsumowanie</li>
+</ul>
+</p>
+<p> Widać wyraźnie że taka wersja jest może i dobra ale jako rozwiązanie tymczasowe do zastosowania doraźnego, no bo przecież nie o to chodzi żeby ułatawiając sobie pracę jednocześnie ją komplikować i wszystkie dane zawsze wprowadzać ręcznie a do tego nie mieć możliwości wyboru elektrowni wiatrowej.</p>
+
+
+<p>W obecnej wersji programu, na chwilę obecną wprowadzonych jest tylko 10 modeli elektrowni wiatrowych wraz z ich krzywymi mocy (krzywa mocy – charakterystyka generowanej energii elektrycznej w zależności od średniej prędkości wiatru) oraz różnymi wysokościami wieży elektrowni wiatrowej. W miarę wolnego czasu postaram się bardziej rozbudować bazę danych ponieważ zamierzam rozbudować tą aplikacje o inne moduły.</p>
+<p>Na chwilę obecną program przyjmuje tylko dane pomiarowe zapisane w pliku tekstowym, bez sprawdzania ich poprawności (sprawdzanie poprawności danych na pewno zostanie jeszcze wprowadzone do programu). </p>
+<p>Po wprowadzaniu danych do programu, możemy przystąpić do analizy wyników – wciskamy więc przycisk „calculate” i w okienku tekstowym pokazują się wyniki obliczeń. Trzeba tutaj wspomnieć iż dane pomiarowe są uśredniane do wartości godzinowych i następnie na podstawie pomiarowych zostaje wyznaczona prędkości wiatru na wysokości generatora elektrowni wiatrowej. Wyznaczona prędkość wiatru podstawiana jest do krzywej mocy z której to pobieramy generowaną moc. Tak oto sprawdzane są wszystkie zgromadzone dane pomiarowe.</p>
+<p>Na zakończenie obliczeń dostępne jest podsumowanie zarówno generowanej energii elektrycznej jak i tzw. „full load hours” (czyli ile godzin dla danych pomiarowych elektrownia wiatrowa pracowałaby z pełną mocą).</p>
+<p>Dla tak przygotowanych obliczeń użytkownik ma do wyboru:
+<ul>
+<li> zapis wyników obliczeń do pliku txt (wyniki obliczeń które mogą zostać wykorzystane podczas dalszych analiz w excelu)</li> 
+<li> podgląd szczegółowych wyników obliczeń w formie graficznej,</li> 
+<li> podgląd podsumowania wyników obliczeń w formie graficznej</li> 
+<li> zapis wyników obliczeń do pliku pdf (wyniki prezentowane w formie czytelnej dla użytkownika (patrz przykładowy <a href="/download/RESwindExample.pdf">raport</a>)</li> 
+</ul>
+</p>
+<p>Należy tutaj dodać obliczenia mogą być generowane dla kilku różnych elektrowni wiatrowych jak i elektrowni wiatrowych z inną wysokością wieży czy krzywą mocy.</p><br />
+<p> Program w postaci pliku jar możesz pobrać <a href="/download/WindYieldAnalyzer.zip">tutaj</a>. Aby uruchomić program należy rozpokować pobraną paczkę i otworzyć plik <b>run.bat</b>. </p>
+
+<p>Jeżeli masz pytania dotyczące tego programu proszę o kontakt.</p>
+</body>
+
+</html>

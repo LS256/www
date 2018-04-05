@@ -1,0 +1,80 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>About me</title>
+    <meta name="description" content="Code for fun" />
+    <meta name="keywords" content="Łukasz Staszewski, java, code for fun, java is fun, have fun with code, " />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Lato" rel="stylesheet"> 
+
+</head>
+
+<body>
+	<p><b>Spring</b> – framework wykorzystywany do tworzenia aplikacji w Java ale również do budowania aplikacji internetowych. Celem Springa jest uproszczenie programowania oraz promowanie dobrych praktyk. 
+Spring podzielony jest na następujące projekty/ moduły:
+	<ul>
+		<li> Spring framework</li>
+		<li> Spring Data </li>
+		<li> Spring MVC </li>
+		<li> Spring Security</li>
+		<li> Spring AOP </li>
+		<li> Spring Boot </li>
+	</ul>
+</p>
+<p><b>Spring framework</b></br>
+Spring polega na specyficznym powiązaniu obiektów w aplikacji zwanym Inversion of Control (w skrócie IoC). W podejściu tym (traktowanym też często jako wzorzec projektowy lub dobra praktyka) przekazuje się sterowanie częścią funkcjonalności na zewnątrz (w sensie poza). I tutaj przykładem jest Dependency Injection czyli wstrzykiwanie zależności.
+Spring Data
+Upraszcza dostęp do bazy danych poprzez zminimalizowanie ilości powtarzalnego kodu, czyli przykładowo jeśli nasza aplikacja wykorzystuje JPA, potrzebujemy stworzyć repozytorium udostępniające podstawowe metody CRUD, to korzystając ze Spring Data całość sprowadza się do stworzenia jednego prostego interfejsu
+</p>
+
+<p><b>Spring MVC</b></br>
+Kolejną rzeczą jaką daje nam Spring to implementacja MVC – czyli podział projektu na warstwy Model – View – Controller. W przypadku tego frameworka mamy klasy kontroler, które obsługują nadchodzące requesty i wyświetlają odpowiedź. Po drodze zaś możemy z żądaniem zrobić co się nam podoba – 
+obejrzeć, przetworzyć, zwalidować, zapisać w bazie i potem coś jeszcze wyświetlić. . Bazuje na na technologii serwletów, czyli kluczowej specyfikacji Javy EE i do działania wymaga kontenera serwletów typu Tomcat, czy Jetty. W najnowszej wersji konfigurację można w całości oprzeć o adnotacje, jednak
+ w starszych projektach można spotkać sporo kodu XML. Projekt wykorzystywany jest do tworzenia zarówno do tworzenia aplikacji z widokiem generowanym po stronie serwera jak i do wystawiania restowych endpointów. Posiada integrację z systemem widoków takimi jak JSP i najpopularniejszym Thymeleaf.</p>
+
+<p><b>Spring Security</b></br>
+Pozwala na zabezpieczenie aplikacji i stworzenie systemu uwierzytelniania i autoryzacji. Najczęściej wykorzystywany w połączeniu ze Spring MVC ale równie dobrzez sprawdza siędo zabezpoeczenia aplikacji tworzonych w Java EE. Dzięki modułowej budowie pozwala na wygodny sposób definiowania 
+własnego schematu uwierzytelnienia.</p>
+
+<p><b>Spring AOP</b></br>
+Ze springiem powiązane jest również programowanie aspektowe, które można opisać jako delegowanie powtarzających się czynności na zewnątrz obiektu, gdzie informację o tym jak i gdzie stosować konkretne czynności możemy sobie oprogramować sami.</p>
+
+<p><b>Spring Boot</b></br>
+Konfiguracja w Springu nie należy do najprostszych, szczególnie gdy porównalibyśmy ją do niemal zerowej konfiguracji, którą znamy z aplikacji tworzonych we współczesnej Javie EE. Problem Javy EE polega jednak na tym, że konfiguracją w dużej mierze zajmuje się serwer aplikacji, a aplikacje pisane w 
+Springu najczęściej uruchamiane są w samym kontenerze serwletów. Spring Boot stanowi więc tak naprawdę alternatywę dla tego co znamy od lat z Javy EE i ukrywa całą skomplikowaną konfigurację. Na podstawie skanowania pakietów oraz informacji zawartych w pliku application.properties Spring Boot 
+utworzy dla nas niezbędne obiekty (np. EntityManagerFactory dla JPA).</p>
+
+<p>
+Kilka pojęć które są powiązane ze Springiem:
+	<ul>
+		<li>bean — to obiekt dowolnego typu, który jest zarządzany przez Spring’a a tym samym podlega wstrzykiwaniu (czyli można go wstrzyknąć w dowolny obiekt z użyciem adnotacji) </li>
+		<li>komponent / stereotyp — to adnotacja, która mówi że obiekt danej klasy ma być zarządzany przez Springa (innymi słowy: mówimy Springowi żeby utworzył beana o takim typie) </li>
+		<li>component-scan — procedura, którą Spring wykonuje na początku (podczas inicjowania aplikacji) i która polega na ‘przejrzeniu’ wszystkich dostępnych oraz znalezieniu tych, które są oznaczone jako komponenty (mają określony stereotyp) </li>
+		<li>view resolver — to specjalna klasa, która otrzymuje nazwę widoku do wyświetlenia oraz dane które przekazujemy do tego widoku (obiekt typu ModelAndView) i na tej podstawie generuje widok, który widzi użytkownik.</li>
+	</ul>
+</p>
+
+<p>
+Podstawowe stereotypy:
+	<ul>
+		<li>@Component – bazowy stereotyp, oznacza, że na podstawie tej klasy będzie utworzony bean Springa (innymi słowy: klasa ta jest zarządzana przez Spring’a, lub też cykl życia tej klasy będzie zarządzany przez Springa). Tego stereotypu używamy najczęściej do klas, które są pomocnicze 
+									i nie oferują elementów logiki biznesowej, a jedynie pomocnicze funkcje (np. konwersja między typami, jakieś wspólne elementy) </li>
+		<li>@Service – stereotyp który wskazuje, że ta klasa jest serwisem, tzn. oferuje pewną logikę biznesową którą będziemy wykorzystywać w innych miejscach (np. kontrolerach; ogólnie w wyższych warstwach – o warstwach opowiemy sobie szerzej w przyszłości). </li>
+		<li>@Repository – wskazuje że klasa pozwala na dostęp do danych, np. wspiera obsługę bazy danych. Adnotacje tą stosujemy np. w obiektach typu DAO (Data Access Object) </li>
+		<li>@Controller – oznaczamy nią kontrolery, tj. klasy, które będą obsługiwały zapytania wysyłane poprzez przeglądarkę od użytkowników. </li>
+		<li>@Autowired  - łączenie elementów (zamiast tworzenia nowego obiektu) </li>
+		<li>@RequestMapping – funkcjonalność widoczna dla użytkowników, jako pametr przyjmuje adres strony która to jeżeli zostanie wywołana to metoda w kontrolerzez oznaczona tą adnotacją zostanie wywołana. </li>
+		<li>@Required – oznaczamy tą adnotacją metody, setery czy zmienne by poinformować Spring’e że elementy te są wymagane </li>
+		<li>@Qualifier(„test123”) – gdy robimy autowired po typie i context nie wie który bean wstrzyknąć to w bean możemy dodać właściwość @Qualifier=”test123” i wtedy wiadomo który bean wstrzyknąć </li>
+		<li>@Entity – adnotacja służąca do ozanczania klasy która będzie reprezentowała nasz obiekt w bazie danych </li>
+	</ul>
+</p>
+
+
+<h3> O tym jak używamy springa już wkrótce... </h3>
+</body>
+
+</html>

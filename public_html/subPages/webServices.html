@@ -1,0 +1,122 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>About me</title>
+    <meta name="description" content="Code for fun" />
+    <meta name="keywords" content="Łukasz Staszewski, java, code for fun, java is fun, have fun with code, " />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Lato" rel="stylesheet"> 
+
+</head>
+
+<body style="font-size: 10px;">
+
+<p>	Wyobraźmy sobie obiekt który zawiera zestaw metod. W normalnych warunkach metody na tym obiekcie możemy wywołać wyłącznie w tym samym programie, w ramach tej same wirtualnej maszyny Java. W uproszczeniu web service to
+ mechanizm umożliwiający wywołanie jakiejś funkcjonalności za pośrednictwem internetu.</p>
+<p>Istnieje kilka podejść implementacji web service, i należą do nich:</p>
+<ul>
+	<li>REST (Representional State Transfer)</li>
+	<li>SOAP (Simple Object Access Protocol)</li>
+</ul>
+<p><b>REST</b> – jest standardem tworzenia web service w większości aplikacji webowych i kręci się wokół tzw. encji  czyli obiektów które reprezentują byt w aplikacji . Może to być na przykład obiekt reprezentujący rezerwację stolika, użytkownika aplickacji czy kredyt w banku.
+Operacje na encjach wykonuje się za pomocą zapytań http (tzn. GET, POST, PUT, REMOVE) które definiują dokładnie jaką operację chcemy wykonać na danej encji.</p>
+<table>
+	<tr>
+		<td>Zapytanie</td>
+		<td>Przykład</td>
+		<td>Znaczenie</td>
+	</tr>
+	
+	<tr>
+		<td>GET</td>
+		<td>GET/rezerwacja/123</td>
+		<td>Pobranie rezerwacji o nr. 123</td>
+	</tr>
+	
+	<tr>
+		<td>POST</td>
+		<td>POST/ rezerwacja/12</td>
+		<td>Edycja rezerwacji o numerze 123</td>
+	</tr>
+	
+	<tr>
+		<td>PUT</td>
+		<td>PUT/ rezerwacja/123</td>
+		<td>Utworzenie nowej rezerwacji o nr. 123</td>
+	</tr>
+	
+	<tr>
+		<td>DELETE</td>
+		<td>DELETE/rezerwacja/123</td>
+		<td>Usunięcie rezerwacji o numerze 123</td>
+	</tr>	
+</table>
+
+<p><b>SOAP</b> – bazuje na konfiguracji XML i jest starszym i bardziej skomplikowanym podejściem niż REST. SOAP z definicji jest bardzo formalny — tzn. każdy serwis powinien udostępniać plik WSDL, 
+który opisuje jak się nazywa każda operacja, jakie dane przyjmuje, jakiego typu są to dane itp. Dzięki temu mamy dostęp do narzędzi takich jak generowanie kodu na podstawie pliku WSDL (bardzo ułatwia
+ korzystanie z zewnętrznego API) </p>
+ <p> Porównanie SOAP z REST</p>
+<table border="1">
+	<tr>
+		<th>#</th>
+		<th>SOAP</th>
+		<th>REST</th>
+	</tr>
+	
+	<tr>
+		<td>1</td>
+		<td>Bazuje na konfiguracji XML</td>
+		<td>Styl architektury oprogramowania wywiedziony z doświadczeń przy pisaniu specyfikacji protokołu HTTP dla systemów rozproszonych</td>
+	</tr>
+	
+	<tr>
+		<td>2</td>
+		<td>Do komunikacji użytkownik - dostawca używa WSDL</td>
+		<td>Używa XML lub JSON do wysyłania lub odbierania danych</td>
+	</tr>
+	
+	<tr>
+		<td>3</td>
+		<td>Wywołuje serwisy odwołując się do metod RPC</td>
+		<td>Wywołuje serwisy poprzez adres URL</td>
+	</tr>
+
+	<tr>
+		<td>4</td>
+		<td>Zwraca zawartość nie czytelną dla użytkownika</td>
+		<td>Czytelna zawartość w postaci XML lub JSON</td>
+	</tr>
+	
+	<tr>
+		<td>5</td>
+		<td>Transfer/komunikacja poprzez HTML. Używa także SMTP, FTP etc.</td>
+		<td>Transfer/komunikacja tylko przez HTTP </td>
+	</tr>
+	
+	<tr>
+		<td>6</td>
+		<td>JavaScript może odwołać się do SOAP ale jest to trudne w implementacji</td>
+		<td>JavaScript z łatwością odwołuje się do REST''owych serwisów</td>
+	</tr>
+	
+	<tr>
+		<td>7</td>
+		<td>Wydajność nie jest zaletą SOAP</td>
+		<td>Dużo lepsza wydajność niż w SOAP.</td>
+	</tr>
+</table>
+ <h3>More details comming soon</h3>
+ 
+
+
+
+
+
+	
+
+</body>
+
+</html>
